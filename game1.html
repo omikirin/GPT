@@ -247,6 +247,9 @@
 
         <div class="ui-panel">
             <div class="turn-info">
+
+                <div id="stageDisplay">ステージ: 1</div>
+
                 <div id="turnDisplay">ターン: 1</div>
                   <div class="action-buttons">
                 <button class="action-btn" id="moveBtn" onclick="toggleMoveMode()">移動</button>
@@ -281,7 +284,15 @@
     <script>
 
         const params = new URLSearchParams(window.location.search);
+        // stage_select.html から ?stage=N が渡される想定
+        // ここで取得して STAGE_ENEMIES[N] の内容で敵を配置します
         const STAGE_NUM = parseInt(params.get('stage')) || 1;
+
+
+
+        const params = new URLSearchParams(window.location.search);
+        const STAGE_NUM = parseInt(params.get('stage')) || 1;
+
 
 
         // ゲーム状態
@@ -308,9 +319,16 @@
         // ゲーム初期化
 
         function initGame(stage = STAGE_NUM) {
+            gameState.turn = 1;
+            gameState.board = Array(6).fill().map(() => Array(8).fill(null));
+
+
+        function initGame(stage = STAGE_NUM) {
+
             gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
             const enemyData = STAGE_ENEMIES[stage] || STAGE_ENEMIES[1];
             gameState.enemies = enemyData.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
 
         function initGame() {
             gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
@@ -705,7 +723,11 @@
         }
 
         // UI更新
+       function updateUI() {
+            document.getElementById('stageDisplay').textContent = `ステージ: ${STAGE_NUM}`;
+
         function updateUI() {
+
             document.getElementById('turnDisplay').textContent = `ターン: ${gameState.turn}`;
             document.getElementById('activeCharacter').textContent = 
                 gameState.selectedCharacter ? 
@@ -819,7 +841,10 @@
         // ゲーム開始
 
         initGame(STAGE_NUM);
+
+        initGame(STAGE_NUM);
         initGame();
+
 
     </script>
 </body>

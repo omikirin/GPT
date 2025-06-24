@@ -154,7 +154,6 @@ const PLAYER_CHARACTERS = [
     { name: 'オエン', type: 'oen', x: 1, y: 1 }
 ];
 
-
 // 敵の初期配置 (最大12体まで)
 const ENEMY_POSITIONS = [
     { x: 6, y: 4 },
@@ -172,6 +171,10 @@ const ENEMY_POSITIONS = [
 ];
 
 // ステージごとの敵配置を生成
+
+// stage_select.html から渡される "?stage=N" を
+// game1.html が読み取り、ここで定義した敵データを利用します。
+
 const STAGE_ENEMIES = {};
 for (let stage = 1; stage <= 10; stage++) {
     const enemies = [];
@@ -187,6 +190,7 @@ for (let stage = 1; stage <= 10; stage++) {
     }
     STAGE_ENEMIES[stage] = enemies;
 }
+
 
 
 const ENEMY_CHARACTERS = [
