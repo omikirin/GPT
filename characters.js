@@ -1,3 +1,4 @@
+
 // Character class and initial character data
 class Character {
     constructor(name, type, x, y, isEnemy = false) {
