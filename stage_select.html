@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステージ選択</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .stage-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .stage-btn {
+            padding: 10px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s ease;
+        }
+        .stage-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="stage-container">
+        <h1>ステージ選択</h1>
+        <button class="stage-btn" onclick="location.href='game1.html'">ステージ1</button>
+    </div>
+</body>
+</html>
