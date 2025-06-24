@@ -279,8 +279,10 @@
 
     <script src="characters.js"></script>
     <script>
+
         const params = new URLSearchParams(window.location.search);
         const STAGE_NUM = parseInt(params.get('stage')) || 1;
+
 
         // ゲーム状態
         const gameState = {
@@ -304,10 +306,16 @@
         }
 
         // ゲーム初期化
+
         function initGame(stage = STAGE_NUM) {
             gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
             const enemyData = STAGE_ENEMIES[stage] || STAGE_ENEMIES[1];
             gameState.enemies = enemyData.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
+        function initGame() {
+            gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+            gameState.enemies = ENEMY_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
 
             gameState.characters.forEach(char => {
                 gameState.board[char.y][char.x] = char;
@@ -809,7 +817,10 @@
         }
 
         // ゲーム開始
+
         initGame(STAGE_NUM);
+        initGame();
+
     </script>
 </body>
 </html>

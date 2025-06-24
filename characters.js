@@ -154,6 +154,7 @@ const PLAYER_CHARACTERS = [
     { name: 'オエン', type: 'oen', x: 1, y: 1 }
 ];
 
+
 // 敵の初期配置 (最大12体まで)
 const ENEMY_POSITIONS = [
     { x: 6, y: 4 },
@@ -186,4 +187,12 @@ for (let stage = 1; stage <= 10; stage++) {
     }
     STAGE_ENEMIES[stage] = enemies;
 }
+
+
+const ENEMY_CHARACTERS = [
+    { name: 'ニンジャ1', type: 'ninja', x: 6, y: 4, isEnemy: true },
+    { name: 'ニンジャ2', type: 'ninja', x: 6, y: 2, isEnemy: true },
+    { name: 'ニンジャ3', type: 'ninja', x: 6, y: 1, isEnemy: true }
+];
+
 
