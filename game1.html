@@ -250,12 +250,20 @@
 
                 <div id="stageDisplay">ステージ: 1</div>
 
+
+                <div id="stageDisplay">ステージ: 1</div>
+
+
                 <div id="turnDisplay">ターン: 1</div>
                   <div class="action-buttons">
                 <button class="action-btn" id="moveBtn" onclick="toggleMoveMode()">移動</button>
                 <button class="action-btn" id="attackBtn" onclick="toggleAttackMode()">攻撃</button>
                 <button class="action-btn" id="skillBtn" onclick="useSkill()">スキル</button>
                 <button class="action-btn" id="endTurnBtn" onclick="endTurn()">ターン終了</button>
+
+                <button class="action-btn" id="restartBtn" onclick="restartGame()">リスタート</button>
+
+
                 <button class="action-btn" id="saveBtn" onclick="saveGame()">セーブ</button>
                 <button class="action-btn" id="loadBtn" onclick="loadGame()">ロード</button>
             </div>
@@ -285,6 +293,24 @@
 
         const params = new URLSearchParams(window.location.search);
         // stage_select.html から ?stage=N が渡される想定
+        // パラメータが無い場合や数値以外の場合は 1 をデフォルトとします
+        const stageParam = parseInt(params.get('stage'), 10);
+        const STAGE_NUM = isNaN(stageParam) ? 1 : stageParam;
+
+        // 指定されたステージの敵データを読み込む
+        let ENEMY_CHARACTERS = [];
+        function loadStageEnemies(stage) {
+            const data = STAGE_ENEMIES[stage] || STAGE_ENEMIES[1];
+            ENEMY_CHARACTERS = data.map(e => new Character(e.name, e.type, e.x, e.y, e.isEnemy));
+            console.log(stage, ENEMY_CHARACTERS);
+        }
+
+        // 初回ロード
+        loadStageEnemies(STAGE_NUM);
+
+
+        const params = new URLSearchParams(window.location.search);
+        // stage_select.html から ?stage=N が渡される想定
         // ここで取得して STAGE_ENEMIES[N] の内容で敵を配置します
         const STAGE_NUM = parseInt(params.get('stage')) || 1;
 
@@ -292,6 +318,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const STAGE_NUM = parseInt(params.get('stage')) || 1;
+
 
 
 
@@ -321,6 +348,20 @@
         function initGame(stage = STAGE_NUM) {
             gameState.turn = 1;
             gameState.board = Array(6).fill().map(() => Array(8).fill(null));
+            gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
+            // 別ステージを指定して初期化する場合は敵データを再読み込み
+            if (stage !== STAGE_NUM) {
+                loadStageEnemies(stage);
+            }
+            // 読み込んだ敵データをコピーして使用
+            gameState.enemies = ENEMY_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
+
+
+        function initGame(stage = STAGE_NUM) {
+            gameState.turn = 1;
+            gameState.board = Array(6).fill().map(() => Array(8).fill(null));
 
 
         function initGame(stage = STAGE_NUM) {
@@ -333,6 +374,7 @@
         function initGame() {
             gameState.characters = PLAYER_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
             gameState.enemies = ENEMY_CHARACTERS.map(c => new Character(c.name, c.type, c.x, c.y, c.isEnemy));
+
 
 
             gameState.characters.forEach(char => {
@@ -726,7 +768,9 @@
        function updateUI() {
             document.getElementById('stageDisplay').textContent = `ステージ: ${STAGE_NUM}`;
 
+
         function updateUI() {
+
 
             document.getElementById('turnDisplay').textContent = `ターン: ${gameState.turn}`;
             document.getElementById('activeCharacter').textContent = 
@@ -838,12 +882,23 @@
             alert('セーブデータを読み込みました');
         }
 
+        // リスタート
+        function restartGame() {
+            if (confirm('ステージを最初からやり直しますか?')) {
+                initGame(STAGE_NUM);
+            }
+        }
+
+        // ゲーム開始
+        window.addEventListener('DOMContentLoaded', () => initGame(STAGE_NUM));
+
         // ゲーム開始
 
         initGame(STAGE_NUM);
 
         initGame(STAGE_NUM);
         initGame();
+
 
 
     </script>

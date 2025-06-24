@@ -175,6 +175,11 @@ const ENEMY_POSITIONS = [
 // stage_select.html から渡される "?stage=N" を
 // game1.html が読み取り、ここで定義した敵データを利用します。
 
+
+// stage_select.html から渡される "?stage=N" を
+// game1.html が読み取り、ここで定義した敵データを利用します。
+
+
 const STAGE_ENEMIES = {};
 for (let stage = 1; stage <= 10; stage++) {
     const enemies = [];
@@ -191,12 +196,11 @@ for (let stage = 1; stage <= 10; stage++) {
     STAGE_ENEMIES[stage] = enemies;
 }
 
-
-
 const ENEMY_CHARACTERS = [
     { name: 'ニンジャ1', type: 'ninja', x: 6, y: 4, isEnemy: true },
     { name: 'ニンジャ2', type: 'ninja', x: 6, y: 2, isEnemy: true },
     { name: 'ニンジャ3', type: 'ninja', x: 6, y: 1, isEnemy: true }
 ];
+
 
 
