@@ -23,13 +23,17 @@
             gap: 20px;
         }
         .stage-btn {
+
             display: inline-block;
+
             padding: 10px 30px;
             font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+
             text-decoration: none;
+
             color: white;
             background: rgba(255,255,255,0.2);
             transition: background 0.3s ease;
@@ -42,6 +46,7 @@
 <body>
     <div class="stage-container">
         <h1>ステージ選択</h1>
+
         <!-- 各リンクは ?stage=番号 を付加して game1.html に遷移します。
              game1.html 側では URL パラメータを読み取り、characters.js に
              定義された STAGE_ENEMIES から敵データをロードします。 -->
@@ -55,6 +60,20 @@
         <a class="stage-btn" href="game1.html?stage=8">ステージ8</a>
         <a class="stage-btn" href="game1.html?stage=9">ステージ9</a>
         <a class="stage-btn" href="game1.html?stage=10">ステージ10</a>
+
+
+        <button class="stage-btn" onclick="location.href='game1.html?stage=1'">ステージ1</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=2'">ステージ2</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=3'">ステージ3</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=4'">ステージ4</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=5'">ステージ5</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=6'">ステージ6</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=7'">ステージ7</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=8'">ステージ8</button>
+        <button class="stage-btn" onclick="location.href='game1.html?stage=9'">ステージ9</button>
+
+        <button class="stage-btn" onclick="location.href='game1.html'">ステージ1</button>
+
     </div>
 </body>
 </html>
