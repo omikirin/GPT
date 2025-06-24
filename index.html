@@ -125,6 +125,20 @@
             border-radius: 10px;
             padding: 20px;
         }
+
+        .game-log {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            height: 150px;
+            overflow-y: auto;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .game-log div {
+            margin-bottom: 5px;
+        }
         
         .character-stats {
             background: rgba(255, 255, 255, 0.1);
@@ -252,6 +266,7 @@
                 <p>• 攻撃ボタンで攻撃範囲表示</p>
                 <p>• スキルで特殊能力使用</p>
             </div>
+            <div id="gameLog" class="game-log"></div>
         </div>
         
         <div class="stats-container">
@@ -272,6 +287,16 @@
             characters: [],
             enemies: []
         };
+
+        function addLog(message) {
+            const log = document.getElementById('gameLog');
+            if (log) {
+                const entry = document.createElement('div');
+                entry.textContent = message;
+                log.appendChild(entry);
+                log.scrollTop = log.scrollHeight;
+            }
+        }
 
         // ゲーム初期化
         function initGame() {
@@ -490,8 +515,10 @@
             clearHighlights();
             
             if (gameState.enemies.length === 0) {
+                addLog('敵全滅で勝ちました');
                 setTimeout(() => alert('勝利！全ての敵を倒しました！'), 500);
             } else if (gameState.characters.length === 0) {
+                addLog('味方全滅で負けました');
                 setTimeout(() => alert('敗北...全滅してしまいました。'), 500);
             }
 
@@ -651,7 +678,11 @@
             clearHighlights();
             
             // 勝敗判定
-            if (gameState.characters.length === 0) {
+            if (gameState.enemies.length === 0) {
+                addLog('敵全滅で勝ちました');
+                setTimeout(() => alert('勝利！全ての敵を倒しました！'), 500);
+            } else if (gameState.characters.length === 0) {
+                addLog('味方全滅で負けました');
                 setTimeout(() => alert('敗北...全滅してしまいました。'), 500);
             }
 
