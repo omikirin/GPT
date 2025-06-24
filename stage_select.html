@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ケモ耳SRPGアドベンチャー - スタート</title>
+    <title>ステージ選択</title>
     <style>
         body {
             margin: 0;
@@ -18,14 +17,14 @@
             color: white;
             text-align: center;
         }
-        .start-container {
+        .stage-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        .start-btn {
+        .stage-btn {
             padding: 10px 30px;
-            font-size: 20px;
+            font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -33,16 +32,15 @@
             background: rgba(255,255,255,0.2);
             transition: background 0.3s ease;
         }
-        .start-btn:hover {
+        .stage-btn:hover {
             background: rgba(255,255,255,0.3);
         }
     </style>
 </head>
 <body>
-    <div class="start-container">
-        <h1>ケモ耳SRPGアドベンチャー</h1>
-        <button class="start-btn" onclick="location.href='stage_select.html'">ゲーム開始</button>
+    <div class="stage-container">
+        <h1>ステージ選択</h1>
+        <button class="stage-btn" onclick="location.href='game1.html'">ステージ1</button>
     </div>
 </body>
 </html>
-
