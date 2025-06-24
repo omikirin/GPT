@@ -253,6 +253,8 @@
                 <button class="action-btn" id="attackBtn" onclick="toggleAttackMode()">攻撃</button>
                 <button class="action-btn" id="skillBtn" onclick="useSkill()">スキル</button>
                 <button class="action-btn" id="endTurnBtn" onclick="endTurn()">ターン終了</button>
+                <button class="action-btn" id="saveBtn" onclick="saveGame()">セーブ</button>
+                <button class="action-btn" id="loadBtn" onclick="loadGame()">ロード</button>
             </div>
                 <div id="activeCharacter">キャラクターを選択してください</div>
             </div>
@@ -730,6 +732,76 @@
             document.getElementById('moveBtn').disabled = !hasSelected;
             document.getElementById('attackBtn').disabled = !hasSelected;
             document.getElementById('skillBtn').disabled = !hasSelected || gameState.selectedCharacter?.mp < 10;
+        }
+
+        // セーブ
+        function saveGame() {
+            const data = {
+                turn: gameState.turn,
+                characters: gameState.characters.map(c => ({
+                    name: c.name,
+                    type: c.type,
+                    x: c.x,
+                    y: c.y,
+                    hp: c.hp,
+                    mp: c.mp,
+                    attackBoost: c.attackBoost,
+                    attackBoostTurns: c.attackBoostTurns,
+                    isEnemy: c.isEnemy,
+                    hasActed: c.hasActed
+                })),
+                enemies: gameState.enemies.map(c => ({
+                    name: c.name,
+                    type: c.type,
+                    x: c.x,
+                    y: c.y,
+                    hp: c.hp,
+                    mp: c.mp,
+                    attackBoost: c.attackBoost,
+                    attackBoostTurns: c.attackBoostTurns,
+                    isEnemy: c.isEnemy,
+                    hasActed: c.hasActed
+                }))
+            };
+            localStorage.setItem('srpgSave', JSON.stringify(data));
+            alert('ゲームをセーブしました');
+        }
+
+        // ロード
+        function loadGame() {
+            const dataStr = localStorage.getItem('srpgSave');
+            if (!dataStr) {
+                alert('セーブデータがありません');
+                return;
+            }
+            const data = JSON.parse(dataStr);
+            gameState.turn = data.turn;
+            gameState.board = Array(6).fill().map(() => Array(8).fill(null));
+            gameState.characters = data.characters.map(c => {
+                const ch = new Character(c.name, c.type, c.x, c.y, c.isEnemy);
+                ch.hp = c.hp;
+                ch.mp = c.mp;
+                ch.attackBoost = c.attackBoost;
+                ch.attackBoostTurns = c.attackBoostTurns;
+                ch.hasActed = c.hasActed;
+                gameState.board[ch.y][ch.x] = ch;
+                return ch;
+            });
+            gameState.enemies = data.enemies.map(c => {
+                const en = new Character(c.name, c.type, c.x, c.y, c.isEnemy);
+                en.hp = c.hp;
+                en.mp = c.mp;
+                en.attackBoost = c.attackBoost;
+                en.attackBoostTurns = c.attackBoostTurns;
+                en.hasActed = c.hasActed;
+                gameState.board[en.y][en.x] = en;
+                return en;
+            });
+            gameState.selectedCharacter = null;
+            gameState.mode = 'select';
+            createBoard();
+            updateUI();
+            alert('セーブデータを読み込みました');
         }
 
         // ゲーム開始
