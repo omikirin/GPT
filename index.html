@@ -1,47 +1,185 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ケモ耳SRPGアドベンチャー - スタート</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100vh;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Arial', sans-serif;
-            color: white;
-            text-align: center;
-        }
-        .start-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .start-btn {
-            padding: 10px 30px;
-            font-size: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: white;
-            background: rgba(255,255,255,0.2);
-            transition: background 0.3s ease;
-        }
-        .start-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カーコング（有）ティーエヌオートクラブ | 賢い消費者 お金を損しない車選び</title>
+  <style>
+    :root {
+      --bg:#120b1f;
+      --card:#221535;
+      --accent:#d6b56d;
+      --accent-2:#8fd3ff;
+      --text:#f7f4ff;
+      --muted:#c6bfd8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, #3f255f 0%, transparent 40%),
+        radial-gradient(circle at 80% 15%, #193955 0%, transparent 35%),
+        linear-gradient(135deg, #11091c, #1b1230 55%, #0e2031);
+      line-height: 1.7;
+    }
+    .hero {
+      min-height: 80vh;
+      padding: 64px 20px 40px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "🦍";
+      font-size: min(36vw, 240px);
+      position: absolute;
+      opacity: 0.08;
+      top: 8%;
+      right: -2%;
+      transform: rotate(-8deg);
+    }
+    .hero::after {
+      content: "🙏";
+      font-size: min(22vw, 140px);
+      position: absolute;
+      opacity: 0.12;
+      bottom: 2%;
+      left: 5%;
+    }
+    .hero-inner { max-width: 980px; position: relative; z-index: 1; }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.25;
+      text-shadow: 0 4px 30px rgba(0,0,0,.45);
+    }
+    .theme {
+      font-size: clamp(1.05rem,2.2vw,1.4rem);
+      color: var(--accent);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .copy { font-size: clamp(1rem,2vw,1.15rem); color: #ece7f8; }
+    .badge {
+      display: inline-block;
+      margin-top: 18px;
+      background: rgba(214,181,109,.17);
+      color: #ffdf95;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,223,149,.45);
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; }
+    section {
+      background: rgba(26,15,42,.86);
+      border: 1px solid rgba(214,181,109,.22);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.25);
+    }
+    h2 { margin-top:0; color: var(--accent); font-size:1.7rem; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:16px; }
+    .info-item { background: rgba(255,255,255,.03); border-radius: 12px; padding: 14px; }
+    .label { color: var(--muted); font-size:.92rem; }
+    .value { font-weight: 700; margin-top: 4px; }
+    .feature-list { margin: 0; padding-left: 1.2rem; color:#dfd8ed; }
+    .qa-controls { display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 16px; }
+    input, textarea, button {
+      border-radius: 10px; border:1px solid rgba(214,181,109,.35);
+      background: #130e22; color: var(--text);
+      padding:10px 12px; font-size: .96rem;
+    }
+    input, textarea { width:100%; }
+    textarea { min-height: 120px; }
+    button { cursor:pointer; background: linear-gradient(135deg,#8b6b2e,#c6a35c); color:#1d122d; font-weight:700; }
+    .qa-item { background: rgba(255,255,255,.03); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+    .qa-item h3 { margin:0 0 6px; font-size:1rem; color: var(--accent-2); }
+    .small { font-size:.88rem; color:var(--muted); }
+  </style>
 </head>
 <body>
-    <div class="start-container">
-        <h1>ケモ耳SRPGアドベンチャー</h1>
-        <button class="start-btn" onclick="location.href='stage_select.html'">ゲーム開始</button>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>カーコング（有）ティーエヌオートクラブ</h1>
+      <p class="theme">テーマ：賢い消費者　お金を損しない車選び</p>
+      <p class="copy">宗教画のような静謐な世界観で、ゴリラ（知恵の象徴）が祈るサラリーマンへ「失敗しない車選び」の叡智を授ける。
+        特選車と誠実な提案で、納得の1台へ導きます。</p>
+      <p class="badge">八潮駅（つくばエクスプレス）まで送迎可能</p>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <h2>店舗情報</h2>
+      <div class="grid">
+        <div class="info-item"><div class="label">店舗名</div><div class="value">カーコング（有）ティーエヌオートクラブ</div></div>
+        <div class="info-item"><div class="label">住所</div><div class="value">〒340-0814 埼玉県八潮市南川崎810-3</div></div>
+        <div class="info-item"><div class="label">TEL</div><div class="value">0078-6044-8121</div></div>
+        <div class="info-item"><div class="label">FAX</div><div class="value">048-999-8071</div></div>
+        <div class="info-item"><div class="label">営業時間</div><div class="value">10:30〜19:00</div></div>
+        <div class="info-item"><div class="label">定休日</div><div class="value">水曜日（他曜日臨時休業あり）</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>対応サービス</h2>
+      <ul class="feature-list">
+        <li>車検 / 修理・整備 / 板金塗装 / 買取 / 新車販売 / 注文販売</li>
+        <li>各種損害保険・自動車保険 / 各種ローン / 各種保険付きプラン</li>
+        <li>ドレスアップ / チューニング / 各種パーツ取扱い / 出張納車 / 駐車場完備</li>
+      </ul>
+      <p class="small">※「お客様に自信を持ってオススメしたい特選車のみ」を厳選してご案内します。</p>
+    </section>
+
+    <section>
+      <h2>Q & A（記事生成用）</h2>
+      <p class="small">下の入力欄にテーマ・読者像・トーンを入れて「記事下書きを生成」を押すと、Q&A向けの本文テンプレートが作れます。</p>
+      <div class="qa-controls">
+        <input id="articleTheme" placeholder="例：初めての中古車購入で失敗しない見積比較" />
+        <input id="articlePersona" placeholder="例：30代・通勤用にコンパクトカー検討中" />
+        <input id="articleTone" placeholder="例：やさしく、数字で納得できる口調" />
+        <button id="generateArticleBtn">記事下書きを生成</button>
+      </div>
+      <textarea id="articleDraft" placeholder="ここに生成された記事下書きが表示されます"></textarea>
+      <hr style="border-color: rgba(214,181,109,.2); margin: 22px 0;" />
+      <div id="qaList"></div>
+    </section>
+  </main>
+
+  <script>
+    const qaData = Array.from({ length: 50 }, (_, i) => {
+      const topics = [
+        '支払総額の見方', 'ローン金利', '走行距離', '修復歴', '保証内容',
+        '保険の選び方', 'メンテ費用', '燃費比較', 'リセール価値', '試乗ポイント'
+      ];
+      const t = topics[i % topics.length];
+      return {
+        q: `Q${i + 1}. ${t}で損しないために最初に確認すべきことは？`,
+        a: `A. ${t}は「相場」「契約条件」「将来コスト」の3点で確認するのが基本です。カーコングでは実車確認時に、費用の内訳とリスクを図解しながら説明します。`
+      };
+    });
+
+    const qaList = document.getElementById('qaList');
+    qaData.forEach(item => {
+      const el = document.createElement('article');
+      el.className = 'qa-item';
+      el.innerHTML = `<h3>${item.q}</h3><p>${item.a}</p>`;
+      qaList.appendChild(el);
+    });
+
+    document.getElementById('generateArticleBtn').addEventListener('click', () => {
+      const theme = document.getElementById('articleTheme').value || '中古車購入の基礎';
+      const persona = document.getElementById('articlePersona').value || '初めて車を買う方';
+      const tone = document.getElementById('articleTone').value || '誠実で分かりやすい';
+      const draft = `【記事タイトル案】\n${theme}｜賢い消費者がお金を損しないための実践ガイド\n\n【想定読者】\n${persona}\n\n【トーン】\n${tone}\n\n【導入】\n「安く買えた」と思っても、維持費や保証で結果的に高くつくケースは少なくありません。この記事では、カーコングが現場でよく見る“損しやすいポイント”を先回りで解説します。\n\n【本文見出し案】\n1. まず比較すべきは車両価格より支払総額\n2. 見積書の“あとから増える費用”を見抜く\n3. 走行距離・修復歴・保証の優先順位\n4. 買った後の維持費（税金/保険/整備）を年額で把握\n5. 相談先の信頼性をチェックする質問リスト\n\n【まとめ】\n賢い車選びは、値引き額ではなく「総額」と「将来コスト」の理解で決まります。迷ったら、実車確認時に不明点をすべて言語化し、比較表で判断しましょう。`;
+      document.getElementById('articleDraft').value = draft;
+    });
+  </script>
 </body>
 </html>
